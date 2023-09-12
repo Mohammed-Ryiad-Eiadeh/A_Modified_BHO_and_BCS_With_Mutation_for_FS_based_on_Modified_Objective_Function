@@ -89,7 +89,6 @@ public final class FitnessFunction {
         return avgAccuracy + 0.001 * (1 - ((double) selectedFeatureDataset.getSelectedFeatures().size() / Fmap.size()) - subsetCorrelation + subsetCorrelationToLabel);
     }
 
-
     /**
      * This methid is used to return the selected subset of features
      * @param optimizer The optimizer that is used for FS
