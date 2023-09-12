@@ -23,11 +23,11 @@ public class DisplayCurvesMain {
         }};
         // Display the convergence curve chart and save it
         ConvergenceCurvePlot CC = new ConvergenceCurvePlot(m1, m2, m11, m22);
-        CC.savePlot(Path.of("C:\\Users\\20187\\Desktop\\CC.svg"));
+        CC.savePlot(Path.of("...svg"));
         CC.Show();
         // Display the box plot chart and save it
         BoxPlot BB = new BoxPlot(m1, m2, m11, m22);
-        BB.savePlot(Path.of("C:\\Users\\20187\\Desktop\\BB.svg"));
+        BB.savePlot(Path.of("...svg"));
         BB.Show();
     }
 }
