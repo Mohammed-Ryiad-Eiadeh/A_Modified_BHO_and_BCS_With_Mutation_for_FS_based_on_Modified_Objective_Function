@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class Conver_Arff_To_CSV_Main implements ArffToCsvConverter {
     public static void main(String... args) throws IOException {
-        var arffFileUrl_To_Read = "";
-        var csvFileUrl_To_Save = "";
+        var arffFileUrl_To_Read = "...";
+        var csvFileUrl_To_Save = "...";
         new Conver_Arff_To_CSV_Main().convert(new File(arffFileUrl_To_Read),
                 new File(csvFileUrl_To_Save));
     }
