@@ -29,7 +29,7 @@ public class CSearchMain {
     public static void main(String... args) throws IOException {
         // read the data
         // noinspection DuplicatedCode
-        var dataPath = "D:\\Mohammeds\\Mohammeds Work\\my master projects\\FS-correlation -based\\datasets\\sonar.csv";
+        var dataPath = "...csv";
         var data = new CSVLoader<>(new LabelFactory()).loadDataSource(Paths.get(dataPath), "Class");
         var dataSet = new MutableDataset<>(data);
 
