@@ -100,7 +100,7 @@ public class CSearchMain {
             var saveToThisPath = System.getProperty("user.dir").concat("\\");
             System.out.println("Name the file please!");
             var dataName = inputs.nextLine();
-            new CSVSaver().save(Paths.get( saveToThisPath + dataName + ".csv"), SFDS, "Class");
+            new CSVSaver().save(Paths.get(saveToThisPath + dataName + ".csv"), SFDS, "Class");
         }
     }
 }
