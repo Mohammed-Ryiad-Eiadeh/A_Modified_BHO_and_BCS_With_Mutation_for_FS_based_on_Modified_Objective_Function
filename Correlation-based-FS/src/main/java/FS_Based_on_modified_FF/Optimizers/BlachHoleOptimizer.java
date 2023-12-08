@@ -119,7 +119,6 @@ public final class BlachHoleOptimizer implements Optimizers {
         this.convergenceCurve = new double[maxIteration];
     }
 
-
     /**
      * Constructs the wrapper feature selection based on cuckoo search algorithm
      * @param dataPath The path of the dataset
