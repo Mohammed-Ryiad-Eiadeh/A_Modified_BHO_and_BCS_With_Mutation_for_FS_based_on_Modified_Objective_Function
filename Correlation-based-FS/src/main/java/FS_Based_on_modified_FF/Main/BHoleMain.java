@@ -46,8 +46,9 @@ public class BHoleMain {
         var SFS = optimizer.select(dataSet);
         var eDate = System.currentTimeMillis();
         var SFDS = new SelectedFeatureDataset<>(dataSet, SFS);
+       // display the selected subset provenance 
         var dataInfo = SFDS.getProvenance();
-        System.out.println(ProvenanceUtil.formattedProvenanceString(dataInfo.getSourceProvenance()));
+        System.out.println("The selected subset provenance is \n" + ProvenanceUtil.formattedProvenanceString(dataInfo.getSourceProvenance()));
 
         // use KNN classifier
         // noinspection DuplicatedCode
@@ -57,6 +58,10 @@ public class BHoleMain {
                 new VotingCombiner(),
                 KNNModel.Backend.THREADPOOL,
                 NeighboursQueryFactoryType.BRUTE_FORCE);
+
+        // disply the model provenance
+        var modelProvenance = KnnTrainer.getProvenance();
+        System.out.println("The model provenance is \n" + ProvenanceUtil.formattedProvenanceString(modelProvenance));
 
         // use crossvalidation
         // noinspection DuplicatedCode
