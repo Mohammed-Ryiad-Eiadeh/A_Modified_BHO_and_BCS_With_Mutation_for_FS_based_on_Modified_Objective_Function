@@ -290,7 +290,7 @@ public  final class CuckooSearchOptimizer implements Optimizers {
      * @param oldSolution The old solution
      */
     @Override
-    public int[] retrieveBestAfterEvaluation(Dataset<Label> dataset, ImmutableFeatureMap FMap, int[] alteredSolution, int... oldSolution) {
+    public int[] retrieveBestAfterEvaluation(Dataset<Label> dataset, ImmutableFeatureMap FMap, int[] alteredSolution, int[] oldSolution) {
         if (FN.EvaluateSolution(this, dataset, FMap, alteredSolution) > FN.EvaluateSolution(this, dataset, FMap, oldSolution)) {
             return alteredSolution;
         }
