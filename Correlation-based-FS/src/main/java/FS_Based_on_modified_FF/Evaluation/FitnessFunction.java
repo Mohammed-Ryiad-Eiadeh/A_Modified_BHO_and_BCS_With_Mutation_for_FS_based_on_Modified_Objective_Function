@@ -70,7 +70,7 @@ public final class FitnessFunction {
      * @param solution The current subset of features
      * @return The fitness score of the given subset
      */
-    public <T extends FeatureSelector<Label>> double EvaluateSolution(T optimizer, Dataset<Label> dataset, ImmutableFeatureMap Fmap, int... solution) {
+    public <T extends FeatureSelector<Label>> double EvaluateSolution(T optimizer, Dataset<Label> dataset, ImmutableFeatureMap Fmap, int[] solution) {
         SelectedFeatureDataset<Label> selectedFeatureDataset = new SelectedFeatureDataset<>(dataset,getSFS(optimizer, dataset, Fmap, solution));
         CrossValidation<Label, LabelEvaluation> crossValidation = new CrossValidation<>(trainer, selectedFeatureDataset, new LabelEvaluator(), 10, Trainer.DEFAULT_SEED);
         double avgAccuracy = 0D;
@@ -97,7 +97,7 @@ public final class FitnessFunction {
      * @param solution The current subset of featurs
      * @return The selected feature set
      */
-    public <T extends FeatureSelector<Label>> SelectedFeatureSet getSFS(T optimizer, Dataset<Label> dataset, ImmutableFeatureMap Fmap, int... solution) {
+    public <T extends FeatureSelector<Label>> SelectedFeatureSet getSFS(T optimizer, Dataset<Label> dataset, ImmutableFeatureMap Fmap, int[] solution) {
         List<String> names = new ArrayList<>();
         List<Double> scores = new ArrayList<>();
         for (int i = 0; i < solution.length; i++) {
@@ -156,7 +156,7 @@ public final class FitnessFunction {
      * @param solution The solution that is produced according to the optimizer we used
      * @return The matrix of tuples and attributes of the given solution
      */
-    private double[][] getSubsetMatrix(int... solution) {
+    private double[][] getSubsetMatrix(int[] solution) {
         List<Integer> indecies = new ArrayList<>();
         for (int index = 0; index < solution.length; index++) {
             if (solution[index] == 1)
@@ -177,7 +177,7 @@ public final class FitnessFunction {
      * @param solution The current solution from the current generation
      * @return The correlation value of the given solution to the respect to the label vector
      */
-    private double getSubsetToLabelCorrelation(Correlation_Id correlation_id, int... solution) {
+    private double getSubsetToLabelCorrelation(Correlation_Id correlation_id, int[] solution) {
         double[] encoddedLabels = oneHotEncoding(labels);
         double[][] mat = getSubsetMatrix(solution);
         double sumCorrelation = 0d;
