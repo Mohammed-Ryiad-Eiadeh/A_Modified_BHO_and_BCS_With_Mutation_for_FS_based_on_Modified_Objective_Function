@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BHoleMain {
-    public static void main(String... args) throws IOException {
+    public static void main(String[] args) throws IOException {
         // read the data
         // noinspection DuplicatedCode
         var dataPath = "...csv";
