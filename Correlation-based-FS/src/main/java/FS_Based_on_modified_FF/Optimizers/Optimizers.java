@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public sealed interface Optimizers extends FeatureSelector<Label> permits BlachHoleOptimizer, CuckooSearchOptimizer {
     int[][] generatePopulation(int totalNumberOfFeatures);
-    int[] retrieveBestAfterEvaluation(Dataset<Label> dataset, ImmutableFeatureMap FMap, int[] alteredSolution, int... oldSolution);
+    int[] retrieveBestAfterEvaluation(Dataset<Label> dataset, ImmutableFeatureMap FMap, int[] alteredSolution, int[] oldSolution);
     double[] getAvgFitness();
 
     /**
@@ -26,7 +26,7 @@ public sealed interface Optimizers extends FeatureSelector<Label> permits BlachH
      * @param currentSolution The solution to be altered by the mutation operator
      * @return The altered solution after inversion mutation
      */
-    default int[] inversionMutation(int... currentSolution) {
+    default int[] inversionMutation(int[] currentSolution) {
         int[] solution = new int[currentSolution.length];
         System.arraycopy(currentSolution, 0, solution, 0, solution.length);
         int rand1 = new Random().nextInt(solution.length);
