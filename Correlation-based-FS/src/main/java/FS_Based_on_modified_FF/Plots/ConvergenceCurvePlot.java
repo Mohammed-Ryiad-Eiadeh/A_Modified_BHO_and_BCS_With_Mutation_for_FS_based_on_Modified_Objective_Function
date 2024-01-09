@@ -19,7 +19,14 @@ public class ConvergenceCurvePlot {
      * @param secondVectorFSCorrelation The data resulted from second algorithm
      */
     public ConvergenceCurvePlot(HashMap<String, Double[]> firstVectorFS, HashMap<String, Double[]> secondVectorFS, HashMap<String, Double[]> firstVectorFSCorrelation, HashMap<String, Double[]> secondVectorFSCorrelation) {
-        this.plot = new XYChartBuilder().title("Convergence Curves").width(600).height(400).theme(Styler.ChartTheme.Matlab).xAxisTitle("iterations").yAxisTitle("Fitnes Score").build();
+        this.plot = new XYChartBuilder().
+                title("Convergence Curves").
+                width(600).
+                height(400).
+                theme(Styler.ChartTheme.Matlab).
+                xAxisTitle("iterations").
+                yAxisTitle("Fitnes Score").
+                build();
         plot.getStyler().setLegendPosition(Styler.LegendPosition.InsideSE);
         plot.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line).setMarkerSize(0);
         // Fill the data into the chart object
