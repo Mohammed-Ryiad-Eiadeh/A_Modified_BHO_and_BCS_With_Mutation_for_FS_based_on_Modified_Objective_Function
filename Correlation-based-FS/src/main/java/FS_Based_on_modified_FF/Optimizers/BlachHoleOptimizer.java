@@ -52,7 +52,11 @@ public final class BlachHoleOptimizer implements Optimizers {
         this.transferFunction = TransferFunction.V2;
         this.populationSize = 20;
         KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3,
-                                                         new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
+                new L1Distance(),
+                Runtime.getRuntime().availableProcessors(),
+                new VotingCombiner(),
+                KNNModel.Backend.THREADPOOL,
+                NeighboursQueryFactoryType.BRUTE_FORCE);
         FN = new FitnessFunction(KnnTrainer);
         this.mutationThreshould = 0.5;
         this.maxIteration = 10;
