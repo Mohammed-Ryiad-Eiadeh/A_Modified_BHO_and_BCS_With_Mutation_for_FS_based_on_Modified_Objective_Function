@@ -265,9 +265,9 @@ public final class BlachHoleOptimizer implements Optimizers {
      */
     @Override
     public int[] retrieveBestAfterEvaluation(Dataset<Label> dataset, ImmutableFeatureMap FMap, int[] alteredSolution, int[] oldSolution) {
-        double scoreOfSolution = FN.EvaluateSolution(this, dataset, FMap, alteredSolution);
-        double scoreOfModifiedSolution = FN.EvaluateSolution(this, dataset, FMap, oldSolution);
-        if (scoreOfSolution > scoreOfModifiedSolution) {
+        double scoreOfModifiedSolution = FN.EvaluateSolution(this, dataset, FMap, alteredSolution);
+        double scoreOfSolution = FN.EvaluateSolution(this, dataset, FMap, oldSolution);
+        if (scoreOfModifiedSolution > scoreOfSolution) {
             return alteredSolution;
         }
         else
