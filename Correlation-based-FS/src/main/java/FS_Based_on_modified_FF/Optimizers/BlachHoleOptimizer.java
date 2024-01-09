@@ -51,12 +51,7 @@ public final class BlachHoleOptimizer implements Optimizers {
     public BlachHoleOptimizer() {
         this.transferFunction = TransferFunction.V2;
         this.populationSize = 20;
-        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3,
-                new L1Distance(),
-                Runtime.getRuntime().availableProcessors(),
-                new VotingCombiner(),
-                KNNModel.Backend.THREADPOOL,
-                NeighboursQueryFactoryType.BRUTE_FORCE);
+        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3, new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
         FN = new FitnessFunction(KnnTrainer);
         this.mutationThreshould = 0.5;
         this.maxIteration = 10;
@@ -75,12 +70,7 @@ public final class BlachHoleOptimizer implements Optimizers {
     public BlachHoleOptimizer(TransferFunction transferFunction, int populationSize, double mutationThreshould, int maxIteration, int seed) {
         this.transferFunction = transferFunction;
         this.populationSize = populationSize;
-        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3,
-                new L1Distance(),
-                Runtime.getRuntime().availableProcessors(),
-                new VotingCombiner(),
-                KNNModel.Backend.THREADPOOL,
-                NeighboursQueryFactoryType.BRUTE_FORCE);
+        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3, new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
         FN = new FitnessFunction(KnnTrainer);
         this.mutationThreshould = mutationThreshould;
         this.maxIteration = maxIteration;
@@ -141,7 +131,12 @@ public final class BlachHoleOptimizer implements Optimizers {
     public BlachHoleOptimizer(String dataPath, FitnessFunction.Correlation_Id correlation_id, TransferFunction transferFunction, int populationSize, double mutationThreshould, int maxIteration, int seed) {
         this.transferFunction = transferFunction;
         this.populationSize = populationSize;
-        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3, new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
+        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3,
+                new L1Distance(),
+                Runtime.getRuntime().availableProcessors(),
+                new VotingCombiner(),
+                KNNModel.Backend.THREADPOOL,
+                NeighboursQueryFactoryType.BRUTE_FORCE);
         FN = new FitnessFunction(dataPath, KnnTrainer, correlation_id);
         this.mutationThreshould = mutationThreshould;
         this.maxIteration = maxIteration;
@@ -187,7 +182,10 @@ public final class BlachHoleOptimizer implements Optimizers {
     public SelectedFeatureSet select(Dataset<Label> dataset) {
         ImmutableFeatureMap FMap = new ImmutableFeatureMap(dataset.getFeatureMap());
         setOfSolutions = generatePopulation(FMap.size());
-        List<StarsFeatureSet> subSet_fScores = Arrays.stream(setOfSolutions).map(subSet -> new StarsFeatureSet(subSet, FN.EvaluateSolution(this, dataset, FMap, subSet))).sorted(Comparator.comparing(StarsFeatureSet::score).reversed()).collect(Collectors.toList());
+        List<StarsFeatureSet> subSet_fScores = Arrays.stream(setOfSolutions).
+                map(subSet -> new StarsFeatureSet(subSet, FN.EvaluateSolution(this, dataset, FMap, subSet))).
+                sorted(Comparator.comparing(StarsFeatureSet::score).reversed()).
+                collect(Collectors.toList());
         int[] blackHole = new int[subSet_fScores.get(0).subSet.length];
         System.arraycopy(subSet_fScores.get(0).subSet, 0, blackHole, 0, blackHole.length);
         SelectedFeatureSet selectedFeatureSet;
@@ -196,14 +194,18 @@ public final class BlachHoleOptimizer implements Optimizers {
             // Update all stars according to the black hole star
             for (int[] setOfSolution : setOfSolutions) {
                 for (int i = 0; i < setOfSolutions[0].length; i++) {
-                    evolvedSolution[i] = (int) transferFunction.applyAsDouble(setOfSolution[i] + rng.nextDouble() * (blackHole[i] - setOfSolution[i]));
+                    evolvedSolution[i] = (int) transferFunction.
+                            applyAsDouble(setOfSolution[i] + rng.nextDouble() * (blackHole[i] - setOfSolution[i]));
                 }
                 // Update each star after the modification and assign the best star as black hole
-                System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, setOfSolution), 0, setOfSolution, 0, setOfSolution.length);
-                System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, blackHole), 0, blackHole, 0, blackHole.length);
+                System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, setOfSolution),
+                        0, setOfSolution, 0, setOfSolution.length);
+                System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, blackHole),
+                        0, blackHole, 0, blackHole.length);
             }
             // Calculate the event horizon
-            double sumOfTheFitnessOfAllStars = Arrays.stream(setOfSolutions).mapToDouble(subSet -> FN.EvaluateSolution(this, dataset, FMap, subSet)).sum();
+            double sumOfTheFitnessOfAllStars = Arrays.stream(setOfSolutions).
+                    mapToDouble(subSet -> FN.EvaluateSolution(this, dataset, FMap, subSet)).sum();
             double eventHorizon = FN.EvaluateSolution(this, dataset, FMap, blackHole) / sumOfTheFitnessOfAllStars;
             // Eliminate all stars that crosse the event horizon and creat new ones in random position in the search space
             for (int[] ofSolution : setOfSolutions) {
@@ -214,16 +216,22 @@ public final class BlachHoleOptimizer implements Optimizers {
                     for (int i = 0; i < blackHole.length; i++) {
                         newStar[i] = rng.nextInt(2);
                     }
-                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, newStar, blackHole), 0, blackHole, 0, blackHole.length);
+                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, newStar, blackHole),
+                            0, blackHole, 0, blackHole.length);
                 }
-                // Update the solution based on mutation according and set the best muted star as black hole if it is better than the current black hole
+                // Update the solution based on mutation according 
+                // and set the best muted staras black hole if it is better than the current black hole
                 if (rng.nextDouble() < mutationThreshould) {
                     evolvedSolution = this.inversionMutation(ofSolution);
-                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, ofSolution), 0, ofSolution, 0, ofSolution.length);
-                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, ofSolution, blackHole), 0, blackHole, 0, blackHole.length);
+                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, ofSolution),
+                            0, ofSolution, 0, ofSolution.length);
+                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, ofSolution, blackHole),
+                            0, blackHole, 0, blackHole.length);
                 }
             }
-            Arrays.stream(setOfSolutions).map(subSet -> new StarsFeatureSet(subSet, FN.EvaluateSolution(this, dataset, FMap, subSet))).forEach(subSet_fScores::add);
+            Arrays.stream(setOfSolutions).
+                    map(subSet -> new StarsFeatureSet(subSet, FN.EvaluateSolution(this, dataset, FMap, subSet))).
+                    forEach(subSet_fScores::add);
             double sum = 0d;
             for (int[] setOfSolution : setOfSolutions) {
                 sum += FN.EvaluateSolution(this, dataset, FMap, setOfSolution);
@@ -247,7 +255,9 @@ public final class BlachHoleOptimizer implements Optimizers {
      */
     @Override
     public int[] retrieveBestAfterEvaluation(Dataset<Label> dataset, ImmutableFeatureMap FMap, int[] alteredSolution, int[] oldSolution) {
-        if (FN.EvaluateSolution(this, dataset, FMap, alteredSolution) > FN.EvaluateSolution(this, dataset, FMap, oldSolution)) {
+        double scoreOfSolution = FN.EvaluateSolution(this, dataset, FMap, alteredSolution);
+        double scoreOfModifiedSolution = FN.EvaluateSolution(this, dataset, FMap, oldSolution);
+        if (scoreOfSolution > scoreOfModifiedSolution) {
             return alteredSolution;
         }
         else
@@ -266,4 +276,3 @@ public final class BlachHoleOptimizer implements Optimizers {
      * This record is used to hold subset of features with its corresponding fitness score
      */
     record StarsFeatureSet(int[] subSet, double score) { }
-}
