@@ -152,7 +152,7 @@ public final class FitnessFunction {
      * @param solution The current solution from the current generation
      * @return The correlation value of the given solution
      */
-    private double getSubsetCorrelation(Correlation_Id correlation_id, int... solution) {
+    private double getSubsetCorrelation(Correlation_Id correlation_id, int[] solution) {
         double[][] mat = getSubsetMatrix(solution);
         return switch (correlation_id) {
             case PearsonsCorrelation -> new PearsonsCorrelation().computeCorrelationMatrix(mat).getNorm() / mat[0].length;
@@ -166,7 +166,7 @@ public final class FitnessFunction {
      * @param solution The solution that is produced according to the optimizer we used
      * @return The matrix of tuples and attributes of the given solution
      */
-    private double[][] getSubsetMatrix(int... solution) {
+    private double[][] getSubsetMatrix(int[] solution) {
         List<Integer> indecies = new ArrayList<>();
         for (int index = 0; index < solution.length; index++) {
             if (solution[index] == 1)
