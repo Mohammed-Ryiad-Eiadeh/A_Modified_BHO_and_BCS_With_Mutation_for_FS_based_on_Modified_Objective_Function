@@ -51,7 +51,8 @@ public final class BlachHoleOptimizer implements Optimizers {
     public BlachHoleOptimizer() {
         this.transferFunction = TransferFunction.V2;
         this.populationSize = 20;
-        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3, new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
+        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3,
+                                                         new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
         FN = new FitnessFunction(KnnTrainer);
         this.mutationThreshould = 0.5;
         this.maxIteration = 10;
@@ -70,7 +71,12 @@ public final class BlachHoleOptimizer implements Optimizers {
     public BlachHoleOptimizer(TransferFunction transferFunction, int populationSize, double mutationThreshould, int maxIteration, int seed) {
         this.transferFunction = transferFunction;
         this.populationSize = populationSize;
-        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3, new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
+        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3,
+                new L1Distance(),
+                Runtime.getRuntime().availableProcessors(),
+                new VotingCombiner(),
+                KNNModel.Backend.THREADPOOL,
+                NeighboursQueryFactoryType.BRUTE_FORCE);
         FN = new FitnessFunction(KnnTrainer);
         this.mutationThreshould = mutationThreshould;
         this.maxIteration = maxIteration;
