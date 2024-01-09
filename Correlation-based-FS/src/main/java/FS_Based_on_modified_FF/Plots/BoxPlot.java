@@ -20,7 +20,24 @@ public class BoxPlot {
      * @param secondVectorFSCorrelation The data resulted from second algorithm
      */
     public BoxPlot(HashMap<String, Double[]> firstVectorFS, HashMap<String, Double[]> secondVectorFS, HashMap<String, Double[]> firstVectorFSCorrelation, HashMap<String, Double[]> secondVectorFSCorrelation) {
-        this.plot = new BoxChartBuilder().title("Box Plot").width(600).height(400).yAxisTitle("Fitness Score").theme(Styler.ChartTheme.Matlab).build();
+        this.plot = new BoxChartBuilder().
+                title("Box Plot").
+                width(600).
+                height(400).
+                yAxisTitle("Fitness Score").
+                theme(Styler.ChartTheme.Matlab).
+                build();
+        plot.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
+        plot.getStyler().setBoxplotCalCulationMethod(BoxStyler.BoxplotCalCulationMethod.NP);
+        // fill data to the chart object
+        String s1 = firstVectorFS.keySet().toArray(String[]::new)[0];
+        String s2 = secondVectorFS.keySet().toArray(String[]::new)[0];
+        plot.addSeries(s1, Arrays.stream(firstVectorFS.get(s1)).mapToDouble(i -> i).toArray());
+        plot.addSeries(s2, Arrays.stream(secondVectorFS.get(s2)).mapToDouble(i -> i).toArray());
+        String s11 = firstVectorFSCorrelation.keySet().toArray(String[]::new)[0];
+        String s22 = secondVectorFSCorrelation.keySet().toArray(String[]::new)[0];
+        plot.addSeries(s11, Arrays.stream(firstVectorFSCorrelation.get(s11)).mapToDouble(i -> i).toArray());
+        plot.addSeries(s22, Arrays.stream(secondVectorFSCorrelation.get(s22)).mapToDouble(i -> i).toArray());
         plot.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
         plot.getStyler().setBoxplotCalCulationMethod(BoxStyler.BoxplotCalCulationMethod.NP);
         // fill data to the chart object
