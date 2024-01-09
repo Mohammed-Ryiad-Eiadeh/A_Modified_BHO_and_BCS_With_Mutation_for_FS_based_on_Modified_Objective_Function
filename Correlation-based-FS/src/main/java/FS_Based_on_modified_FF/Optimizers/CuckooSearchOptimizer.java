@@ -50,7 +50,12 @@ public  final class CuckooSearchOptimizer implements Optimizers {
     public CuckooSearchOptimizer() {
         this.transferFunction = TransferFunction.V2;
         this.populationSize = 50;
-        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3, new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
+        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3,
+                new L1Distance(),
+                Runtime.getRuntime().availableProcessors(),
+                new VotingCombiner(),
+                KNNModel.Backend.THREADPOOL,
+                NeighboursQueryFactoryType.BRUTE_FORCE);
         FN = new FitnessFunction(KnnTrainer);
         this.stepSizeScaling = 2d;
         this.lambda = 2d;
@@ -78,7 +83,12 @@ public  final class CuckooSearchOptimizer implements Optimizers {
     public CuckooSearchOptimizer(TransferFunction transferFunction, int populationSize, double stepSizeScaling, double lambda, double worstNestProbability, double delta, double mutationThreshould, int maxIteration, int seed) {
         this.transferFunction = transferFunction;
         this.populationSize = populationSize;
-        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3, new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
+        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3,
+                new L1Distance(),
+                Runtime.getRuntime().availableProcessors(),
+                new VotingCombiner(),
+                KNNModel.Backend.THREADPOOL,
+                NeighboursQueryFactoryType.BRUTE_FORCE);
         FN = new FitnessFunction(KnnTrainer);
         this.stepSizeScaling = stepSizeScaling;
         this.lambda = lambda;
@@ -189,7 +199,12 @@ public  final class CuckooSearchOptimizer implements Optimizers {
     public CuckooSearchOptimizer(String dataPath, FitnessFunction.Correlation_Id correlation_id, TransferFunction transferFunction, int populationSize, double stepSizeScaling, double lambda, double worstNestProbability, double delta, double mutationThreshould, int maxIteration, int seed) {
         this.transferFunction = transferFunction;
         this.populationSize = populationSize;
-        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3, new L1Distance(), Runtime.getRuntime().availableProcessors(), new VotingCombiner(), KNNModel.Backend.THREADPOOL, NeighboursQueryFactoryType.BRUTE_FORCE);
+        KNNTrainer<Label> KnnTrainer =  new KNNTrainer<>(3,
+                new L1Distance(),
+                Runtime.getRuntime().availableProcessors(),
+                new VotingCombiner(),
+                KNNModel.Backend.THREADPOOL,
+                NeighboursQueryFactoryType.BRUTE_FORCE);
         FN = new FitnessFunction(dataPath, KnnTrainer, correlation_id);
         this.stepSizeScaling = stepSizeScaling;
         this.lambda = lambda;
@@ -247,26 +262,33 @@ public  final class CuckooSearchOptimizer implements Optimizers {
                 int[] evolvedSolution = new int[setOfSolutions[0].length];
                 // Update the solution based on the levy flight function 0.5 + 0.8 * (new Random().nextGaussian() / Math.pow(Math.abs(new Random().nextGaussian()), 1.0 / 3.0))
                 for (int i = 0; i < setOfSolutions[0].length; i++) {
-                    evolvedSolution[i] = (int) transferFunction.applyAsDouble(setOfSolutions[solution][i] + stepSizeScaling * Math.pow(solution + 1, -lambda));
+                    evolvedSolution[i] = (int) transferFunction.
+                            applyAsDouble(setOfSolutions[solution][i] + stepSizeScaling * Math.pow(solution + 1, -lambda));
                 }
                 int randomCuckooIndex = rng.nextInt(setOfSolutions.length);
-                System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, setOfSolutions[randomCuckooIndex]), 0, setOfSolutions[randomCuckooIndex], 0, setOfSolutions[randomCuckooIndex].length);
+                System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, setOfSolutions[randomCuckooIndex]),
+                        0, setOfSolutions[randomCuckooIndex], 0, setOfSolutions[randomCuckooIndex].length);
                 // Update the solution based on the abandone nest function
                 if (new Random().nextDouble() < worstNestProbability) {
                     int r1 = rng.nextInt(setOfSolutions.length);
                     int r2 = rng.nextInt(setOfSolutions.length);
                     for (int j = 0; j < setOfSolutions[0].length; j++) {
-                        evolvedSolution[j] = (int) transferFunction.applyAsDouble(setOfSolutions[solution][j] + delta * (setOfSolutions[r1][j] - setOfSolutions[r2][j]));
+                        evolvedSolution[j] = (int) transferFunction.
+                                applyAsDouble(setOfSolutions[solution][j] + delta * (setOfSolutions[r1][j] - setOfSolutions[r2][j]));
                     }
-                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, setOfSolutions[solution]), 0, setOfSolutions[solution], 0, setOfSolutions[solution].length);
+                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, setOfSolutions[solution]),
+                            0, setOfSolutions[solution], 0, setOfSolutions[solution].length);
                 }
                 // Update the solution based on mutation according to some mutation rate
                 if (rng.nextDouble() < mutationThreshould) {
                     evolvedSolution = this.inversionMutation(setOfSolutions[solution]);
-                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, setOfSolutions[solution]), 0, setOfSolutions[solution], 0, setOfSolutions[solution].length);
+                    System.arraycopy(retrieveBestAfterEvaluation(dataset, FMap, evolvedSolution, setOfSolutions[solution]),
+                            0, setOfSolutions[solution], 0, setOfSolutions[solution].length);
                 }
             }
-            Arrays.stream(setOfSolutions).map(subSet -> new CuckooSearchFeatureSet(subSet, FN.EvaluateSolution(this, dataset, FMap, subSet))).forEach(subSet_fScores::add);
+            Arrays.stream(setOfSolutions).
+                    map(subSet -> new CuckooSearchFeatureSet(subSet, FN.EvaluateSolution(this, dataset, FMap, subSet))).
+                    forEach(subSet_fScores::add);
             double sum = 0d;
             for (int[] setOfSolution : setOfSolutions) {
                 sum += FN.EvaluateSolution(this, dataset, FMap, setOfSolution);
@@ -291,7 +313,9 @@ public  final class CuckooSearchOptimizer implements Optimizers {
      */
     @Override
     public int[] retrieveBestAfterEvaluation(Dataset<Label> dataset, ImmutableFeatureMap FMap, int[] alteredSolution, int[] oldSolution) {
-        if (FN.EvaluateSolution(this, dataset, FMap, alteredSolution) > FN.EvaluateSolution(this, dataset, FMap, oldSolution)) {
+        double scoreOfSolution = FN.EvaluateSolution(this, dataset, FMap, alteredSolution);
+        double scoreOfModifiedSolution = FN.EvaluateSolution(this, dataset, FMap, oldSolution);
+        if (scoreOfSolution > scoreOfModifiedSolution) {
             return alteredSolution;
         }
         else
