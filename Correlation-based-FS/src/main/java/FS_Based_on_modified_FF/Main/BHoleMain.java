@@ -29,7 +29,7 @@ public class BHoleMain {
     public static void main(String[] args) throws IOException {
         // read the data
         // noinspection DuplicatedCode
-        var dataPath = "D:\\Mohammeds\\Mohammeds Work\\my master projects\\FS-correlation -based\\datasets\\urban.csv";
+        var dataPath = System.getProperty("user.dir") + "\\datasets\\urban.csv";
         var data = new CSVLoader<>(new LabelFactory()).loadDataSource(Paths.get(dataPath), "Class");
         var dataSet = new MutableDataset<>(data);
 
