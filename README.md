@@ -72,3 +72,55 @@ This is a comparsion among MBHO with the Spearman correlation function and the m
 
 # Conclusion
 Feature Selection (FS) is a challenging optimization problem, aiming to improve learning algorithms by removing redundant variables. Our research introduces MBHO, a modified Black Hole Optimization algorithm, along with a revised fitness function to evaluate feature subsets. We consider feature interrelationships and label dependencies, employing the Spearman correlation function in our fitness function. We evaluate MBHO on fourteen benchmark datasets from the UCI repository, comparing it with wrapper-based and filter-based FS methods. MBHO demonstrates improved accuracy, increased F1 score, and reduced dataset size, leading to faster training and testing. Our experiments show MBHO outperforms other filters in convergence speed and fitness score across various datasets. Our approach is applicable to real-world datasets of varying dimensions and can be adapted to different fields such as engineering and data science. It can also be integrated with other classifiers like KNN to enhance their feature selection process and time complexity.
+
+# How To Run The Code (read carefully please)
+
+1) Download intellIJ IDEA latest version
+2) Dounload JDK 17 or higher
+3) Set up the environment variable for the bin folder of the JDK 17+
+4) Open the IDEA
+5) Open the project
+6) Make sure you are connected to the internet
+7) Wait while the IDEA download all the libraries that are included as dependencies in the pom XML file
+8) Go to the main file (here you will get 7 files that are executable (have "psvm" method)) so these files are as follows:
+
+   a) BHoleMain: this class is used to run MBHO for FS.
+
+   b) Conver_Arff_To_CSV_Main: this class is used to convert a dataset with .Arff extention to .csv extention.
+
+   c) CSearchMain: this class is used to run CS for FS.
+
+   d) DisplayCurvesMain: this class is used to display and store the convergence curves and the box plots of the used FS approaches (two variant of MBHO and CS).
+
+   e) JMI_Main: this class is used to run JMI for FS.
+  
+   f) MIM_Main: this class is used to run MIM for FS.
+
+   g) mRMR_Main: this class is used to run m for FS.
+
+9) Set up the desired hyperparameters
+10) Run the file to see the results.
+
+# References
+
+[12] A. R. Hota, A. Clements, S. Sundaram, and S. Bagchi. 2016. Optimal and game-theoretic deployment of security investments in interdependent assets. In International Conference on Decision and Game Theory for Security. 101–113.
+
+[13] S. Jauhar, B. Chen, W. G. Temple, X. Dong, Z. Kalbarczyk, W. H. Sanders, and D. M. Nicol. 2015. Model-based cybersecurity assessment with nescor smart grid failure scenarios. In Dependable Computing (PRDC), 2015 IEEE 21st Pacific Rim International Symposium on. IEEE, 319–324.
+
+[14] G. Modelo-Howard, S. Bagchi, and G. Lebanon. 2008. Determining placement of intrusion detectors for a distributed application through bayesian network modeling. In International Workshop on Recent Advances in Intrusion Detection. Springer, 271–290.
+
+[15] J. Zeng, S. Wu, Y. Chen, R. Zeng, and C. Wu, ‘‘Survey of Attack Graph Analysis Methods from the Perspective of Data and Knowledge Processing,’’ Security and Communication Networks, vol. 2019, 2019.
+
+[16] R. A. Rossi and N. K. Ahmed, ‘‘The network data repository with interactive graph analytics and visualization,’’ in Proceedings of the Twenty-Ninth AAAI Conference on Artificial Intelligence, 2015. [Online]. Available: http://networkrepository.com.
+
+# Contact With Authors
+
+Send email to the following authors for any question about this work, and it is our pleasure to ansawer your question.
+
+Mohammad Aleiadeh, mraleiad@iu.edu or maleiade@purdue.edu
+
+dr. Mustafa Abdallah, mabdall@iu.edu or abdalla0@purdue.edu
+
+Note: Authors are arranged alphabetically.
+
+
