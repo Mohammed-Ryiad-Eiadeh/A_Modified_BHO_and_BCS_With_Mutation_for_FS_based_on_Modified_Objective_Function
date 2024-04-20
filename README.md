@@ -103,15 +103,18 @@ Feature Selection (FS) is a challenging optimization problem, aiming to improve 
 
 # References
 
-[12] A. R. Hota, A. Clements, S. Sundaram, and S. Bagchi. 2016. Optimal and game-theoretic deployment of security investments in interdependent assets. In International Conference on Decision and Game Theory for Security. 101–113.
+[1] Dua, D.; Graff, C. UCI Machine Learning Repository, 2017.
 
-[13] S. Jauhar, B. Chen, W. G. Temple, X. Dong, Z. Kalbarczyk, W. H. Sanders, and D. M. Nicol. 2015. Model-based cybersecurity assessment with nescor smart grid failure scenarios. In Dependable Computing (PRDC), 2015 IEEE 21st Pacific Rim International Symposium on. IEEE, 319–324.
+[2] Rodrigues, D.; Pereira, L.A.M.; Almeida, T.N.S.; Papa, J.P.; Souza, A.N.; Ramos, C.C.O.; Xin-She 1029 Yang. BCS: A Binary Cuckoo Search algorithm for feature selection. In Proceedings of the 1030 2013 IEEE International Symposium on Circuits and Systems (ISCAS2013). IEEE, may 2013, pp. 1031 465–468. https://doi.org/10.1109/ISCAS.2013.6571881.
 
-[14] G. Modelo-Howard, S. Bagchi, and G. Lebanon. 2008. Determining placement of intrusion detectors for a distributed application through bayesian network modeling. In International Workshop on Recent Advances in Intrusion Detection. Springer, 271–290.
+[3] Pocock, A. Tribuo: Machine Learning with Provenance in Java, 2021, [arXiv:cs.LG/2110.03022]. 1316
 
-[15] J. Zeng, S. Wu, Y. Chen, R. Zeng, and C. Wu, ‘‘Survey of Attack Graph Analysis Methods from the Perspective of Data and Knowledge Processing,’’ Security and Communication Networks, vol. 2019, 2019.
+[4] Gu, X.; Guo, J.; Xiao, L.; Li, C. Conditional mutual information-based feature selection algorithm 1033 for maximal relevance minimal redundancy. Applied Intelligence 2022, 52, 1436–1447. https: 1034
+//doi.org/10.1007/s10489-021-02412-4. 1035
 
-[16] R. A. Rossi and N. K. Ahmed, ‘‘The network data repository with interactive graph analytics and visualization,’’ in Proceedings of the Twenty-Ninth AAAI Conference on Artificial Intelligence, 2015. [Online]. Available: http://networkrepository.com.
+[5] Can high-order dependencies improve mutual information based feature selection? Pattern 1036 Recognition 2016, 53, 46–58. https://doi.org/10.1016/j.patcog.2015.11.007. 
+
+[6] Angulo, A.P.; Shin, K. Mrmr+ and Cfs+ feature selection algorithms for high-dimensional data. 1038 Applied Intelligence 2019, 49, 1954–1967. https://doi.org/10.1007/s10489-018-1381-1.
 
 # Contact With Authors
 
