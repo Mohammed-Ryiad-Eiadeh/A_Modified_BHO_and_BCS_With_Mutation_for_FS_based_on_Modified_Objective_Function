@@ -19,7 +19,7 @@ $Correlation(X):$ is the correlation among the features in $X$.
 $Correlation(X,l)$ is the correlation between each feature and the label $l$. 
 
 # Our Contribution
-1) We propose a novel wrapper feature selection (FS) approach, that combines the black hole algorithm with inversion mutation,  to select the most descriptive subset of features from datasets that cover different application domains. %, and with different dimensions. 
+1) We propose a novel wrapper feature selection (FS) approach, that combines the black hole algorithm with inversion mutation,  to select the most descriptive subset of features from datasets that cover different application domains.
 
 2) We modify a well-established multi-objective function that focuses on the interleaved classifier and the number of selected features in the decision-making process. Additionally, we enhance the decision-making process by considering the correlation among the selected subset of features and the correlation of each feature within that subset with the corresponding label.
 
