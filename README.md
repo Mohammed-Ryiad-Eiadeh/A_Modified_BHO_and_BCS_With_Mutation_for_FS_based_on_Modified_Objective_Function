@@ -6,4 +6,8 @@ High dimensional datasets are highly likely to have redundant, irrelevant, and n
 # Fitness Function
 $f(X) = \max\left(Acc(X) + w_f \left(\left(1 - \frac{L_f}{L_t}\right) - \text{Correlation}(X) + \text{Correlation}(X, l)\right)\right)$
 
+$Correlation(X):$ is the correlation among the features in $X$
+
+$Correlation(X,l)$ is the correlation between each feature and the label $l$. 
+
 
