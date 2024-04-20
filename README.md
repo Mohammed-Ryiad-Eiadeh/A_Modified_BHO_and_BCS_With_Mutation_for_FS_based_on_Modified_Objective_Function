@@ -25,4 +25,23 @@ $Correlation(X,l)$ is the correlation between each feature and the label $l$.
 
 3) We assess our approach using fourteen benchmark datasets. We benchmark the performance of a wrapper FS approach called Binary Cuckoo Search (BCS). We also benchmark the performance of three filter-based FS, namely Mutual Information Maximisation (MIM), Joint Mutual Information (JMI) and minimum Redundancy Maximum Relevance (mRMR).
 
+# Datasets We Used In Our Work
+These datasets are sourced from the UCI ML repository \cite{Dua:2019}. The datasets are colon, Darwin, divorce, WDBC, leukemia, leukemia-3c, MLL, Parkinsons, sobar, sonar, SPECTFtest, SRBCT, urban, and WPBC. Colon dataset is widely used in binary classification, especially, predicting Colon cancer. Darwin dataset is widely used in ML tasks such as classification and regression analysis. Leukemia and Leukemia-3c datasets demonstrate various molecular or cellular features, widely used in machine learning tasks and differing in size. The MLL dataset includes various molecular or cellular features, widely utilized in data science tasks. The WDBC dataset represents various diagnostic measurements crucial for breast cancer research and analysis. The SRBCT dataset embodies diverse molecular or cellular attributes pertinent to machine learning research and analysis in the context of small round blue cell tumors. The Sobar dataset encapsulates diverse socio-behavioral features, facilitating research and analysis in relevant domains. The Parkinson's dataset represents various clinical and demographic features relevant to Parkinson's disease research and diagnosis. The Sonar dataset represents distinct acoustic signal features, valuable for research and analysis in underwater target detection or classification tasks. The Divorce dataset represents diverse socio-demographic and relationship features, crucial for machine learning research and analysis in understanding factors valuable in divorce prediction or prevention. The SpectTF dataset embodies various attributes related to spectral analysis or signal processing, pertinent for research and analysis in fields such as pattern recognition or medical diagnostics. The Urban dataset represents diverse urban features, facilitating research and analysis in urban planning, development, or sustainability studies. The WPBC dataset represents various clinical and demographic features pertinent to research and analysis in the context of breast cancer prognosis and treatment. As detailed above, this diverse selection of datasets with different applications helps us in better generalization of the performance of our FS approach for different datasets with different characteristics. A detailed description of all these datasets can be found in Table 1. These datasets were specifically selected due to certain characteristics such as high feature size, and binary classes, which are ideal for demonstrating the effectiveness of the feature selection algorithms (both our proposed one and those used as baselines in our evaluation). We underscore that the benefits of our suggested model apply to any given dataset with many features that need a careful and accurate FS approach.
+
+| Name         | No. of Attributes | No. of Instances | No. of Classes |
+|--------------|-------------------|-------------------|-----------------|
+| Colon        | 2000              | 62                | 2               |
+| Darwin       | 450               | 174               | 2               |
+| Leukemia     | 3571              | 72                | 2               |
+| Leukemia-3c  | 7129              | 72                | 2               |
+| MLL          | 12582             | 72                | 3               |
+| WDBC         | 30                | 569               | 2               |
+| SRBCT        | 2308              | 83                | 4               |
+| Sobar        | 19                | 72                | 2               |
+| Parkinsons   | 22                | 197               | 2               |
+| Sonar        | 60                | 208               | 2               |
+| Divorce      | 54                | 170               | 2               |
+| SpectTF      | 44                | 267               | 2               |
+| Urban        | 146               | 675               | 4               |
+| WPBC         | 31                | 198               | 2               |
 
