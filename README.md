@@ -68,6 +68,7 @@ This is a comparsion among MBHO with the Spearman correlation function and the m
 | Urban        | 80       | **0.77**                | 0.72                   | 0.64       | 0.60     | 0.70      | 0.66     | 0.69       | 0.62     |
 | WPBC         | 13       | **0.78**                | 0.65                   | 0.70       | 0.53     | 0.68      | 0.56     | 0.70       | 0.54     |
 
-$F1:$ is the fitness score.
+, where $F1:$ is the fitness score.
 
-
+# Conclusion
+Feature Selection (FS) is a challenging optimization problem, aiming to improve learning algorithms by removing redundant variables. Our research introduces MBHO, a modified Black Hole Optimization algorithm, along with a revised fitness function to evaluate feature subsets. We consider feature interrelationships and label dependencies, employing the Spearman correlation function in our fitness function. We evaluate MBHO on fourteen benchmark datasets from the UCI repository, comparing it with wrapper-based and filter-based FS methods. MBHO demonstrates improved accuracy, increased F1 score, and reduced dataset size, leading to faster training and testing. Our experiments show MBHO outperforms other filters in convergence speed and fitness score across various datasets. Our approach is applicable to real-world datasets of varying dimensions and can be adapted to different fields such as engineering and data science. It can also be integrated with other classifiers like KNN to enhance their feature selection process and time complexity.
