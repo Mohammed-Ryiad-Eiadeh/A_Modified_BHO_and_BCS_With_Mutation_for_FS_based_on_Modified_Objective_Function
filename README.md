@@ -49,7 +49,7 @@ These datasets are sourced from the UCI ML repository [1]. The datasets are colo
 We begin by detailing the primary hyperparameters utilized in various components 680 of our framework. We use the KNN algorithm in the evaluation process with k = 3 and 681 the Manhattan distance function to measure the dissimilarity among a pair of instances. 682 Also, we use k-fold cross-validation with 10-fold for better evaluation. The parameters for 683 the MBHO were selected as follows: maximum iterations (M = 25), population size which 684 refers to a set of potential attack paths (N = 10), mutation rate (mr = 0.5), and weight 685 factor (w f = 0.001). For the binary CS [2], we have set population size N = 30, step-size 686 = 1.5, lambda = 2.5, worst-nest-probability = 0.2, delta = 1.5, mr = 0.5, and M = 25. 687 All tests were conducted using the Java language (JDK 17) on a machine with an Intel® 688 Core™ i7-8750H CPU @ 2.20GHz (12 CPUs), and 32768MB RAM. The tools and libraries we 689 used in this study are as follows: Java Development Kit 8 (JDK 8), Integrated Development 690 Environment (IDE), IntelliJ ultimate version, Oracle Machine Learning Library, Tribuo 4.1.0, 691 and XChart Library 3.8.0. Tribuo is a general-purpose open-source ML library written in 692 Java that can be used for deep learning and Natural Language Processing applications 693 as well [3]. Furthermore, we use the Apache Common Math 3 API for correlation 694 calculation.
 
 # Comparison of MBHO and  on all datasets
-This is a comparsion among MBHO with the Spearman correlation function and the methods MIM [4], JMI [5], and mRMR [6]. Here, $SL=0.05$. To ensure a fair comparison, we matched the number of features selected by our approach with the number of features used by all three filters. Our model consistently achieved superior results in terms of accuracy ($Acc$) and F1 score across all datasets. However, in most cases, it required more time to generate the final subset of features. Additionally, based on the Friedman test, the null hypothesis is rejected.
+This is a comparsion among MBHO with the Spearman correlation function and the methods MIM [4], JMI [5], and mRMR [6]. Here, we matched the number of features selected by our approach with the number of features used by all three filters. Our model consistently achieved superior results in terms of accuracy ($Acc$) and F1 score across all datasets. However, in most cases, it required more time to generate the final subset of features.
 
 | Name         | Features | MBHO-correlation (Acc) | MBHO-correlation (F1) | MIM (Acc) | MIM (F1) | JMI (Acc) | JMI (F1) | mRMR (Acc) | mRMR (F1) |
 |--------------|----------|-------------------------|------------------------|------------|----------|-----------|----------|------------|----------|
@@ -68,8 +68,6 @@ This is a comparsion among MBHO with the Spearman correlation function and the m
 | Urban        | 80       | **0.77**                | 0.72                   | 0.64       | 0.60     | 0.70      | 0.66     | 0.69       | 0.62     |
 | WPBC         | 13       | **0.78**                | 0.65                   | 0.70       | 0.53     | 0.68      | 0.56     | 0.70       | 0.54     |
 
-**Rank First:** 14, 3, 1, 2  
-**Sum of Ranks:** 53.06, 33.04, 26.04, 28  
-**Mean of Ranks:** 3.79, 2.36, 1.86, 2
+$F1:$ is the fitness score.
 
-$F1:$ is the fitness score
+
