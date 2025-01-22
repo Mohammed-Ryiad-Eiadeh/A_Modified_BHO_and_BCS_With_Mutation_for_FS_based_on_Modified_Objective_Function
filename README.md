@@ -118,10 +118,11 @@ Feature Selection (FS) is a challenging optimization problem, aiming to improve 
 
 [6] Angulo, A.P.; Shin, K. Mrmr+ and Cfs+ feature selection algorithms for high-dimensional data. 1038 Applied Intelligence 2019, 49, 1954–1967. https://doi.org/10.1007/s10489-018-1381-1.
 
-# Contact With The Developer
+# Contact With The Authors
 
-Send email to the following developer for any question about this work, and it is my pleasure to ansawer your question.
+Send email to the following Authors for any question about this work, and it is our pleasure to ansawer your question.
 
-Mohammad Aleiadeh, mraleiad@iu.edu or maleiade@purdue.edu
+Mohammad Aleiadeh, maleiade@purdue.edu
 
+Mustafa Abdallah, abdalla0@purdue.edu
 
